@@ -37,6 +37,11 @@ class Configuration implements ConfigurationInterface
                     ->validate()
                         ->ifNotInArray($yamlIndent)
                         ->thenInvalid('The input type "%s" is not supported. Please use one of the following values: '.implode(', ', $yamlIndent))
+                    ->end()
+                ->end()
+
+                ->booleanNode('yaml_keys_sorting')
+                    ->defaultValue(true)
                 ->end()
 
             ->end()

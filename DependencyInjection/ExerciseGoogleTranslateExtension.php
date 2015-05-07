@@ -25,6 +25,7 @@ class ExerciseGoogleTranslateExtension extends Extension
 
         $container->setParameter($rootNode.'.api_key', $config['api_key']);
         $container->setParameter($rootNode.'.yaml_indent', $config['yaml_indent']);
+        $container->setParameter($rootNode.'.yaml_keys_sorting', $config['yaml_keys_sorting']);
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
