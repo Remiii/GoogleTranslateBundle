@@ -112,8 +112,15 @@ class GoogleTranslateCommand extends ContainerAwareCommand
             $output->writeln(sprintf('   > Creating "<info>%s</info>" file', $messageToFileName));
 
             $file = dirname($messageFromFileName) . '/' . basename($messageToFileName);
-            $messagesTo = $this->ksortRecursive($messagesTo);
-            file_put_contents($file, Yaml::dump($messagesTo, 100500));
+
+            $yamlKeysSorting = $this->getContainer()->getParameter('exercise_google_translate.yaml_keys_sorting');
+            if ( $yamlKeysSorting )
+            {
+                $messagesTo = $this->ksortRecursive($messagesTo);
+            }
+            $yamlIndent = $this->getContainer()->getParameter('exercise_google_translate.yaml_indent');
+            file_put_contents($file, Yaml::dump($messagesTo, 100500, $yamlIndent));
+
 
         }
 
